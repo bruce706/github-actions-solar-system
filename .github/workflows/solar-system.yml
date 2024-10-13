@@ -1,4 +1,7 @@
 name: Solar System Workflow
+MONGO_URI:
+      'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
+MONGO_USERNAME: superuser
 
 on: 
   workflow_dispatch:
@@ -24,6 +27,8 @@ jobs:
           run: npm install
     
         - name: Unit Testing
+          env:
+            MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
           run: npm test
           
         - name: Archive Test Result
